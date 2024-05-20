@@ -1,5 +1,9 @@
 version: "3"
 
+# NETWORK
+# The default network used is Docker's built-in 'host' (run docker network ls)
+# This allows the container to access other containers via the host machine
+
 services:
   gui:
     tty: true
@@ -12,10 +16,5 @@ services:
     volumes:
       - ./docker/dockerfiles/webserver/docker-entrypoint.sh:/docker-entrypoint.sh
       - .:/app
-    networks:
-      - limitless
-
-
-networks:
-  limitless:
-    driver: host
+    ports:
+      - "${HOST_MACHINE_UNSECURE_HOST_PORT}:8080"
