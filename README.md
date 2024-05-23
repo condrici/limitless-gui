@@ -2,15 +2,26 @@
 
 Limitless GUI is one of the components of the Limitless Project that serves as a graphical interface.
 
-Codebase: Vue 3 in Vite (Vite is a programatic API with full TypeScript typing).
+It is based on VueJS (front-end framework) and Vite (build tool) and it communicates with the Limitless API - which serves as a gateway for other services. In the README of the installation repository "Limitless", you can find a diagram that shows how all components work together.
 
-## 1. Project Installation
+## Getting Started
 
-The entire project installation must be triggered from the installation repository, which will install all components, including this one. During the project installation, the file under commands/install.sh will be executed.
+#### Project Components
 
-Once the project is intalled, the docker environment can be initiated with the command: docker-compose up.
+- limitless (Installation Repository)
+- limitless-gui (Web Graphical Interface, JavaScript/VueJS, [repository link](https://github.com/condrici/limitless-gui))
+- limitless-api (Web API Gateway, PHP/Laravel, [repository link](https://github.com/condrici/limitless-api))
+- limitless-analytics (Analytics, Python/Flask API/BeautifulSoup, [repository link](https://github.com/condrici/limitless-analytics))
 
-## 2. Project Files
+#### Installation Requirements
+- Docker (needed for the infrastructure)
+- Lnav utility (used for aggregating log files)
+- Bash utility (for various scripts)
+
+#### Installation Steps
+- From the "limitless" repostory, run command: sh commands/install
+
+## Important Files
 
 **docker/dockerfiles/docker-entrypoint.sh** (commands that get executed when the docker environment starts)
 
@@ -22,7 +33,7 @@ Once the project is intalled, the docker environment can be initiated with the c
 
 **src/** (Vite project files)
 
-## 3. Project Commands
+## Commands
 
 Some of the commands below will be triggered in the docker-entrypoint.sh file automatically when starting the Docker environment.
 
@@ -32,7 +43,7 @@ Some of the commands below will be triggered in the docker-entrypoint.sh file au
 
 **npm run dev** (build the application for development)
 
-## 4. Developer Notes
+## Developer Notes
 
 ### Recommended IDE Setup
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
