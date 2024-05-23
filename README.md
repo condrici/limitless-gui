@@ -43,6 +43,10 @@ Some of the commands below will be triggered in the docker-entrypoint.sh file au
 
 **npm run dev** (build the application for development)
 
+**npm run watch** (build the application for development and reload after files have been changed)
+
+**npm list** (lists all npm packages and their versions)
+
 ## Developer Notes
 
 ### Recommended IDE Setup
