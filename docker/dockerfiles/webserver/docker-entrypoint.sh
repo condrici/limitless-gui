@@ -6,7 +6,7 @@ cd /app
 npm install
 
 # Compile and minify for production
-npm run build
+npm run watch
 
 # Start HTTP Server
 http-server dist
