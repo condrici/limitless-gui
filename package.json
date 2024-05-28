@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "node_modules/.bin/vite",
-    "build": "http-server /app/ && node_modules/.bin/vite build",
-    "preview": "node_modules/.bin/vite preview",
-    "watch": "(http-server /app/ && node_modules/.bin/vite build --watch)"
+    "start-webserver": "http-server -p 8080 /app",
+    "stop-webserver": "if pgrep http-server; then pkill http-server; fi",
+    "restart-webserver": "npm run stop-webserver && npm run start-webserver",
+    "dev": "npm run stop-webserver && node_modules/.bin/vite",
+    "build": "npm run restart-webserver && node_modules/.bin/vite build",
+    "preview": "npm run stop-webserver && node_modules/.bin/vite preview"
   },
   "dependencies": {
     "axios": "^1.4.0",
