@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start-webserver": "http-server -p 8080 /app",
+    "start-devwebserver": "http-server -p 8080 /app",
+    "start-prodwebserver": "http-server -p 8080 /app/dist",
     "stop-webserver": "if pgrep http-server; then pkill http-server; fi",
-    "restart-webserver": "npm run stop-webserver && npm run start-webserver",
+    "restart-devwebserver": "npm run stop-webserver && npm run start-devwebserver",
+    "restart-prodwebserver": "npm run stop-webserver && npm run start-prodwebserver",
     "dev": "npm run stop-webserver && node_modules/.bin/vite",
-    "build": "npm run restart-webserver && node_modules/.bin/vite build",
+    "build": "npm run restart-prodwebserver && node_modules/.bin/vite build",
     "preview": "npm run stop-webserver && node_modules/.bin/vite preview"
   },
   "dependencies": {
