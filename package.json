@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "node_modules/.bin/vite",
-    "build": "http-server && node_modules/.bin/vite build",
+    "build": "http-server /app/ && node_modules/.bin/vite build",
     "preview": "node_modules/.bin/vite preview",
-    "watch": "(http-server && node_modules/.bin/vite build --watch)"
+    "watch": "(http-server /app/ && node_modules/.bin/vite build --watch)"
   },
   "dependencies": {
     "axios": "^1.4.0",

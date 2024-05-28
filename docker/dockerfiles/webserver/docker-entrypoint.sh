@@ -9,7 +9,7 @@ npm install
 npm run watch
 
 # Start HTTP Server
-http-server dist
+http-server /app
 
 # Fix docker container exiting with code 0
 tail -f /dev/null
