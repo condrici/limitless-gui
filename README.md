@@ -1,8 +1,10 @@
 # Limitless GUI
 
-Limitless GUI is one of the components of the Limitless Project that serves as a graphical interface.
+Limitless GUI is one of the components of the Limitless Project that serves as a graphical interface. It communicates directly with the Limitless API, which serves as a gateway for other services/
 
-It is based on VueJS (front-end framework) and Vite (build tool) and it communicates with the Limitless API - which serves as a gateway for other services. In the README of the installation repository "Limitless", you can find a diagram that shows how all components work together.
+Technologies
+- VueJS (JavaScript front-end framework)
+- Vite (build tool that supports VueJS, but also other frameworks)
 
 ## Getting Started
 
@@ -23,15 +25,21 @@ It is based on VueJS (front-end framework) and Vite (build tool) and it communic
 
 ## Important Files
 
-**docker/dockerfiles/docker-entrypoint.sh** (commands that get executed when the docker environment starts)
+**docker/dockerfiles/docker-entrypoint.sh** 
+- Commands that get executed when the docker environment starts
 
-**.env** (environment variables used within the Docker environment)
+**.env** 
+- Environment variables used within the Docker environment
 
-**vite.config.js** (Vite configuration file)
+**vite.config.js** 
+- Vite configuration file
 
-**package.json** (NPM project dependencies)
+**package.json** 
+- NPM project dependencies
+- MPM custom script commands (npm run dev, etc)
 
-**src/** (Vite project files)
+**src/** 
+- Vite project files
 
 ## Commands
 
@@ -41,10 +49,12 @@ Some of the commands below will be triggered in the docker-entrypoint.sh file au
 - Install NPM packages defined in package.json
 
 **npm run build** 
-- Build the application for production (with http-server service, with endpoint ./index.html)
+- Build the application for production 
+- No live reload, webserver: http-server service, endpoint: ./index.html
 
 **npm run dev** 
-- Build the application for development (with live reload, with Vite http server, with endpoint ./index.html)
+- Build the application for development 
+- Uses live reload, webserver: Vite http server, endpoint: ./index.html
 
 **npm list** 
 - Lists all npm packages and their versions
@@ -54,7 +64,9 @@ Some of the commands below will be triggered in the docker-entrypoint.sh file au
 ### Recommended IDE Setup
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Additional Resources
+## Documentation
+
+### Project Configuration
 
 ### Customizing Vite
 
