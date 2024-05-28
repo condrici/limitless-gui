@@ -16,6 +16,8 @@ export default defineConfig({
     }
   },
   server: {
-    port: 8080,
+    // Host helps the host machine connect to the internal docker port
+    host: '0.0.0.0',
+    port: 8080
   },
 })
