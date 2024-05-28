@@ -4,7 +4,12 @@ Limitless GUI is one of the components of the Limitless Project that serves as a
 
 Technologies
 - VueJS (JavaScript front-end framework)
-- Vite (build tool that supports VueJS, but also other frameworks)
+- Vite (build tool that supports VueJS, but also other frameworks; similar to Webpack)
+- TailwindCSS (CSS framework)
+
+Recommended IDE Setup
+- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
 
 ## Getting Started
 
@@ -23,7 +28,7 @@ Technologies
 #### Installation Steps
 - From the "limitless" repostory, run command: sh commands/install
 
-## Important Files
+## Important Files and Directories
 
 **docker/dockerfiles/docker-entrypoint.sh** 
 - Commands that get executed when the docker environment starts
@@ -41,6 +46,12 @@ Technologies
 **src/** 
 - Vite project files
 
+**/public** 
+- Folder for assets (such as images) for files that have certain needs (read Vite documentation)
+- Assets here will be served at root / path during dev and copied to the root of the dist directory as-is
+- You should always reference public assets using root absolute path - for example, public/icon.png
+- Assets in public cannot be imported from JavaScript
+
 ## Commands
 
 Some of the commands below will be triggered in the docker-entrypoint.sh file automatically when starting the Docker environment.
@@ -50,24 +61,29 @@ Some of the commands below will be triggered in the docker-entrypoint.sh file au
 
 **npm run build** 
 - Build the application for production 
-- No live reload, webserver: http-server service, endpoint: ./index.html
+- No live reload, webserver: http-server service, served location (minified): ./dist/index.html
 
 **npm run dev** 
 - Build the application for development 
-- Uses live reload, webserver: Vite http server, endpoint: ./index.html
+- Uses live reload, webserver: Vite http server, served location (not minified): ./index.html
 
 **npm list** 
 - Lists all npm packages and their versions
 
-## Developer Notes
-
-### Recommended IDE Setup
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
 ## Documentation
 
-### Project Configuration
+### Internal Documentation
 
-### Customizing Vite
+https://github.com/condrici/limitless-gui/blob/main/documentation/configuration.md
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### Vite 4.0
+
+https://devdocs.io/vite~4/
+
+### VueJS 3.x
+
+https://vuejs.org/guide/introduction.html
+
+### Tailwind 3.x
+
+https://tailwindcss.com/docs/installation
