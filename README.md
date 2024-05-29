@@ -30,23 +30,23 @@ Recommended IDE Setup
 
 ## Important Files and Directories
 
-**docker/dockerfiles/docker-entrypoint.sh** 
+**./docker/dockerfiles/docker-entrypoint.sh** 
 - Commands that get executed when the docker environment starts
 
 **.env** 
 - Environment variables used within the Docker environment
 
-**vite.config.js** 
+**./vite/vite.config.js** 
 - Vite configuration file
 
-**package.json** 
+**./vite/package.json** 
 - NPM project dependencies
 - MPM custom script commands (npm run dev, etc)
 
-**src/** 
+**./vite/src/** 
 - Vite project files
 
-**/public** 
+**./vite/public** 
 - Folder for assets (such as images) for files that have certain needs (read Vite documentation)
 - Assets here will be served at root / path during dev and copied to the root of the dist directory as-is
 - You should always reference public assets using root absolute path - for example, public/icon.png
