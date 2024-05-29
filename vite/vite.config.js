@@ -21,6 +21,7 @@ export default defineConfig({
     port: 8080
   },
   optimizeDeps: {
+    // Fix for ViteJS bug when running "npm run dev" command
     exclude: ['js-big-decimal']
   }
 })

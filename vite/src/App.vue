@@ -2,10 +2,6 @@
   const websiteName = "Limitless"
 </script>
 
-<template>
-  {{ websiteName }}
-</template>
-
 <style scoped>
 header {
   line-height: 1.5;
