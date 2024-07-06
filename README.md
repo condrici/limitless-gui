@@ -6,6 +6,10 @@ Technologies
 - VueJS (JavaScript front-end framework)
 - Vite (build tool that supports VueJS, but also other frameworks; similar to Webpack)
 - TailwindCSS (CSS framework)
+- PostCSS (CSS pre-processor)
+
+Other Implementations
+- Bidirectional GUI update via Websockets
 
 Recommended IDE Setup
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
@@ -18,6 +22,7 @@ Recommended IDE Setup
 - limitless (Installation Repository)
 - limitless-gui (Web Graphical Interface, JavaScript/VueJS, [repository link](https://github.com/condrici/limitless-gui))
 - limitless-api (Web API Gateway, PHP/Laravel, [repository link](https://github.com/condrici/limitless-api))
+- limitless-assets (Asset Management, PHP/Laravel, [repository link](https://github.com/condrici/limitless-assets))
 - limitless-analytics (Analytics, Python/Flask API/BeautifulSoup, [repository link](https://github.com/condrici/limitless-analytics))
 
 #### Installation Requirements
@@ -56,6 +61,9 @@ Recommended IDE Setup
 
 Some of the commands below will be triggered in the docker-entrypoint.sh file automatically when starting the Docker environment.
 
+**docker exec -it limitless-gui sh**
+- Open limitless-gui container via terminal
+
 **npm install** 
 - Install NPM packages defined in package.json
 
@@ -82,7 +90,15 @@ https://devdocs.io/vite~4/
 
 ### VueJS 3.x
 
+How it Works
+
 https://vuejs.org/guide/introduction.html
+https://vuejs.org/guide/extras/rendering-mechanism
+
+Template System
+https://vuejs.org/guide/essentials/template-syntax
+https://vuejs.org/guide/essentials/component-basics.html
+https://vuejs.org/api/built-in-special-elements
 
 ### Tailwind 3.x
 
