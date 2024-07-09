@@ -17,9 +17,14 @@ class ApiEndpoints {
         import.meta.env.VITE_API_GATEWAY_PORT + '/api/v1.0'
 
     readonly API_ANALYTICS_ENDPOINT = 
-        import.meta.env.VITE_ANALYTICS_API_PROTOCOL + '://' +
-        import.meta.env.VITE_ANALYTICS_API_HOSTNAME + ':' +
-        import.meta.env.VITE_ANALYTICS_API_PORT
+        import.meta.env.VITE_API_ANALYTICS_PROTOCOL + '://' +
+        import.meta.env.VITE_API_ANALYTICS_HOSTNAME + ':' +
+        import.meta.env.VITE_API_ANALYTICS_PORT
+
+        readonly API_ASSETS_ENDPOINT = 
+        import.meta.env.VITE_API_ASSETS_PROTOCOL + '://' +
+        import.meta.env.VITE_API_ASSETS_HOSTNAME + ':' +
+        import.meta.env.VITE_API_ASSETS_PORT + '/api'
 }
 
 class Http {
@@ -41,6 +46,24 @@ class Http {
     }
 }
 
+
+class AssetsApi {
+    private http_request : typeof Http;
+    private api_endpoints: typeof ApiEndpoints;
+
+    constructor(
+        http_request: typeof Http
+    ) {
+        this.http_request = http_request
+    }
+
+    public getAssets() {
+        return new ApiEndpoints().API_ASSETS_ENDPOINT + '/assets';
+    }
+}
+
 let http = new Http(axios)
+let assetsApi = new AssetsApi(Http)
 let apiEndpoints = new ApiEndpoints
-export {http, apiEndpoints}
+
+export {http, apiEndpoints, assetsApi}
