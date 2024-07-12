@@ -6,7 +6,7 @@
         data() {
             return { 
                 tablePages: [
-                    {number: "1", isSelected:false}, 
+                    {number: "1", isSelected:true}, 
                     {number: "2", isSelected:false}, 
                     {number: "3", isSelected:false}, 
                 ],
@@ -73,9 +73,11 @@
 <template>
     <div v-if="assetsData" class="assets-table">
 
-        <!-- Assets Table Data -->
+        <!-- Assets Table -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+
+                <!-- Table Head -->
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -93,6 +95,8 @@
                         </th>
                     </tr>
                 </thead>
+
+                <!-- Table Body -->
                 <tbody>
                     <tr v-for="item in assetsData" :key="item.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -109,7 +113,7 @@
             </table>
         </div>
 
-        <!-- Assets Table Pagination -->
+        <!-- Table Pagination -->
         <nav aria-label="Page navigation example" class="mt-4">
             <ul class="inline-flex -space-x-px text-sm">
                 <li v-for="page in tablePages" :key="page.number">
@@ -126,5 +130,6 @@
                 </li>
             </ul>
         </nav>
+        
     </div>
 </template>
