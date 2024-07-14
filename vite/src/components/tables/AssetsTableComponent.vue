@@ -1,78 +1,84 @@
-<script setup>
+<script setup lang="ts">
     import {http, apiEndpoints} from '../../features/Http';
+    import {AssetsManager} from '../../features/AssetsManager';
+    import {onBeforeMount, ref} from 'vue';
 
-    defineOptions({
-        inheritAttrs: false,
-        data() {
-            return { 
-                tablePages: [
-                    {number: "1", isSelected:true}, 
-                    {number: "2", isSelected:false}, 
-                    {number: "3", isSelected:false}, 
-                ],
-                isPageActive: false,
-                assetsData: ""
+    //------------------------------------------------------------------------------------>
+    // 
+    // Settings
+    // 
+    //------------------------------------------------------------------------------------>
+
+    const defaultTablePageNumber = 1;
+    const defaultTableRecordsPerPage = 10;
+    const assetsManager = new AssetsManager();
+    const pagesData = ref(assetsManager.generateTablePagesData(3));
+    const recordsData = ref("");
+
+    //------------------------------------------------------------------------------------>
+    // 
+    // Vue Hooks
+    // 
+    //------------------------------------------------------------------------------------>
+
+    onBeforeMount(function() {
+        updateTableRecords(defaultTablePageNumber, defaultTableRecordsPerPage);
+    });
+
+    //------------------------------------------------------------------------------------>
+    // 
+    // Functions
+    // 
+    //------------------------------------------------------------------------------------>
+
+    function updateTableRecords(pageNumber: Number, limit: Number) {
+        var getAssetsUrl = apiEndpoints.API_ASSETS_ENDPOINT + "/assets?page=" + pageNumber + "&limit=" + limit;
+        
+        http.sendGetRequest(getAssetsUrl).then((response) => {
+                recordsData.value = response.data;
+                updateTablePagination(pageNumber, response);
             }
-        },
-        beforeMount () {
-            this.loadAssets()
-        },
-        methods: {
-            loadAssets(page=1, limit=10) {
-                var getAssetsUrl = apiEndpoints.API_ASSETS_ENDPOINT + "/assets?page=" + page + "&limit=" + limit;
-                var self = this;
-                
-                function processResponse(response) {
-                    self.assetsData = response.data
-                }
+        )
+    }
 
-                http.sendGetRequest(getAssetsUrl).then(
-                    function (response) {
-                        processResponse(response);
-                    }
-                )
-            },
-            changePage(pageNumber, isSelected) {
+    function updateTablePagination(pageNumber: Number, httpResponse) {
+        deselectOtherPagesInTablePagination(pageNumber);
+        selectNewPageInTablePagination(pageNumber);
+    }
 
-                if (isSelected) {
-                    return;
-                }
+    function togglePageSelection(newPageNumber: Number, isSelected: Boolean) {
+        if (isSelected) {
+            return;
+        }
+        
+        this.updateTableRecords(newPageNumber, this.defaultTableRecordsPerPage)
+    }
 
-                //change selected page
-                for (let i = 0; i < this.tablePages.length; i++) {
-                    if (this.tablePages[i].number !== pageNumber) {
-                        this.tablePages[i].isSelected = false
-                    }
-                    this.toggleSelection(pageNumber)
-                }
-
-                //load assets
-                this.loadAssets(pageNumber, 10);
-            },
-            toggleSelection(pageNumber) {
-                const page = this.tablePages.find(page => page.number === pageNumber)
-                if (page) {
-                    page.isSelected = !page.isSelected
-                }
+    function  deselectOtherPagesInTablePagination(newPageNumber: Number) {
+        for (let i = 0; i < pagesData.value.length; i++) {
+            if (pagesData.value[i].number !== newPageNumber) {
+                pagesData.value[i].isSelected = false;
             }
+        }   
+    }
 
-        },
-    })
+    function selectNewPageInTablePagination(newPageNumber: Number) {
+        const page = pagesData.value.find(page => page.number === newPageNumber)
+        if (page) {
+            page.isSelected = !page.isSelected
+        }
+    }
 
 </script>
 
 <style>
-    .btn-active {
-        background: orange !important;
-    }
     .selected {
         background: orange !important;
     }
 </style>
 
 <template>
-    <div v-if="assetsData" class="assets-table">
-
+    <div v-if="recordsData" class="assets-table">
         <!-- Assets Table -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -98,7 +104,7 @@
 
                 <!-- Table Body -->
                 <tbody>
-                    <tr v-for="item in assetsData" :key="item.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr v-for="item in recordsData" :key="item.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ item.name }}
                         </th>
@@ -116,10 +122,10 @@
         <!-- Table Pagination -->
         <nav aria-label="Page navigation example" class="mt-4">
             <ul class="inline-flex -space-x-px text-sm">
-                <li v-for="page in tablePages" :key="page.number">
+                <li v-for="page in pagesData" :key="page.number">
                     <a
                         :id="page.number"
-                        @click="changePage(page.number, page.isSelected)" 
+                        @click="togglePageSelection(page.number, page.isSelected)" 
                         :class="{selected: page.isSelected}" 
                         href="#" 
                         aria-current="page.number" 
