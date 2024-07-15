@@ -31,22 +31,28 @@
     // 
     //------------------------------------------------------------------------------------>
 
-    function updateTableRecords(pageNumber: Number, limit: Number) {
+    function updateTableRecords(
+        pageNumber: Number, 
+        limit: Number
+    ) {
         var getAssetsUrl = apiEndpoints.API_ASSETS_ENDPOINT + "/assets?page=" + pageNumber + "&limit=" + limit;
         
         http.sendGetRequest(getAssetsUrl).then((response) => {
                 recordsData.value = response.data;
-                updateTablePagination(pageNumber, response);
+                updateTablePagination(pageNumber);
             }
         )
     }
 
-    function updateTablePagination(pageNumber: Number, httpResponse) {
+    function updateTablePagination(pageNumber: Number) {
         deselectOtherPagesInTablePagination(pageNumber);
         selectNewPageInTablePagination(pageNumber);
     }
 
-    function togglePageSelection(newPageNumber: Number, isSelected: Boolean) {
+    function togglePageSelection(
+        newPageNumber: Number, 
+        isSelected: Boolean
+    ) {
         if (isSelected) {
             return;
         }
@@ -59,7 +65,7 @@
             if (pagesData.value[i].number !== newPageNumber) {
                 pagesData.value[i].isSelected = false;
             }
-        }   
+        }
     }
 
     function selectNewPageInTablePagination(newPageNumber: Number) {
@@ -93,7 +99,14 @@
                             <div class="flex items-center">
                                 Last Tracked Date
                                 <a href="#">
-                                    <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"></svg></a>
+                                    <svg 
+                                        class="w-3 h-3 ms-1.5" 
+                                        aria-hidden="true" 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        fill="currentColor" 
+                                        viewBox="0 0 24 24">
+                                    </svg>
+                                </a>
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -129,7 +142,12 @@
                         :class="{selected: page.isSelected}" 
                         href="#" 
                         aria-current="page.number" 
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        class="
+                            flex items-center justify-center px-3 h-8 leading-tight 
+                            text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 
+                            hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 
+                            dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white
+                        "
                     >
                         {{ page.number }}
                     </a>
