@@ -12,8 +12,8 @@
     const defaultTablePageNumber = 1;
     const defaultTableRecordsPerPage = 10;
     const assetsManager = new AssetsManager();
-    const pagesData = ref(assetsManager.generateTablePagesData(3));
-    const recordsData = ref("");
+    const pagesData = ref({});
+    const recordsData = ref({});
 
     //------------------------------------------------------------------------------------>
     // 
@@ -38,7 +38,13 @@
         var getAssetsUrl = apiEndpoints.API_ASSETS_ENDPOINT + "/assets?page=" + pageNumber + "&limit=" + limit;
         
         http.sendGetRequest(getAssetsUrl).then((response) => {
-                recordsData.value = response.data;
+                recordsData.value = response.data.data;
+
+                pagesData.value = assetsManager.generateTablePagesData(
+                    response.data.meta.total,
+                    defaultTableRecordsPerPage
+                )
+
                 updateTablePagination(pageNumber);
             }
         )
