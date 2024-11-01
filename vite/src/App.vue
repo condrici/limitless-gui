@@ -12,13 +12,13 @@
 
 <template>
     <div style="margin: 10px auto; width: 1200px">
-        <button class="btn btn-blue mb-5">
-            Assets
-        </button>
-        <AssetsTableComponent />
+        <main-navigation-menu></main-navigation-menu>
+        <p>Assets</p>
+        <assets-table-component></assets-table-component>
     </div>
 </template>
 
 <script setup>
+  import MainNavigationMenu from '@/components/navigation/MainNavigationMenu.vue'
   import AssetsTableComponent from '@/components/tables/AssetsTableComponent.vue'
 </script>

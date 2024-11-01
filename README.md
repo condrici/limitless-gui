@@ -7,6 +7,8 @@ Technologies
 - Vite (build tool that supports VueJS, but also other frameworks; similar to Webpack)
 - TailwindCSS (CSS framework)
 - PostCSS (CSS pre-processor)
+- Axios (HTTP requests)
+- http-server ((HTTP server)
 
 Other Implementations
 - Bidirectional GUI update via Websockets

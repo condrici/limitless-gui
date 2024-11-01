@@ -48,14 +48,7 @@ class Http {
 
 
 class AssetsApi {
-    private http_request : typeof Http;
     private api_endpoints: typeof ApiEndpoints;
-
-    constructor(
-        http_request: typeof Http
-    ) {
-        this.http_request = http_request
-    }
 
     public getAssets() {
         return new ApiEndpoints().API_ASSETS_ENDPOINT + '/assets';

@@ -1,26 +1,39 @@
 # Limitless GUI
 
-## Folder Structure
+## Vite Folder Structure
 
-### node_modules
+### vite/node_modules
 
 This directory houses the folders and files of installed dependencies. Notably, these files are omitted from version control (e.g., GitHub). The analogy here is akin to a recipe book; only the description of the required modules is shared, allowing seamless reproduction on other systems using npm install.
 
-### src
+### vite/src
 
 The heart of the project resides in the src folder. It serves as the workspace where application structure and components are crafted, defining the core functionality of the application.
 
-### src
+### vite/assets
 
-Public assets
+Where you put any assets that are imported into your components. Like Images, CSS, Bootstrap, JavaScript, Fonts, etc.
+
+### vite/components
+
+All the components of the projects that are not the main views. This was a part of code that we can reuse in the multiple views by importing them inside views.
+
+## Vite Main Files
+
+### index.html:
+
+This file hosts the root element of our application. As the entry point, the application goes to this HTML document during runtime.
+
+### main.js:
+
+In this file, we're bringing in all the core dependencies necessary for a Vue application to work. After the dependencies are imported, the Vue application is initialized.
+
+## Vite Other Files
 
 ### .eslintrc.cjs:
 
 The presence of this file signifies the configuration of ESLint, a versatile and customizable linting tool. ESLint aids in maintaining code quality by identifying and reporting on patterns in JavaScript. It acts as a proactive measure, catching issues such as undeclared variables, variable redeclarations, constant value alterations, unnecessary parentheses, and syntactic errors.
 
-### index.html:
-
-This file hosts the root element of our application. As the entry point, the application goes to this HTML document during runtime.
 
 ### README.md:
 
